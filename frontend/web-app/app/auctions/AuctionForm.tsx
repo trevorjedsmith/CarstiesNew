@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, TextInput } from 'flowbite-react';
+import { Button } from 'flowbite-react';
 import React, { useEffect } from 'react'
 import { FieldValues, useForm } from 'react-hook-form'
 import Input from '../components/Input';
@@ -28,7 +28,7 @@ export default function AuctionForm({ auction }: Props) {
             reset({ make, model, color, mileage, year });
         }
         setFocus('make');
-    }, [setFocus])
+    }, [setFocus, auction, reset])
 
     async function onSubmit(data: FieldValues) {
         try {
@@ -69,23 +69,23 @@ export default function AuctionForm({ auction }: Props) {
             </div>
 
             {pathname === '/auctions/create' &&
-            <>
-                <Input label='Image URL' name='imageUrl' control={control}
-                    rules={{ required: 'Image URL is required' }} />
+                <>
+                    <Input label='Image URL' name='imageUrl' control={control}
+                        rules={{ required: 'Image URL is required' }} />
 
-                <div className='grid grid-cols-2 gap-3'>
-                    <Input label='Reserve Price (enter 0 if no reserve)'
-                        name='reservePrice' control={control} type='number'
-                        rules={{ required: 'Reserve price is required' }} />
-                    <DateInput
-                        label='Auction end date/time'
-                        name='auctionEnd'
-                        control={control}
-                        dateFormat='dd MMMM yyyy h:mm a'
-                        showTimeSelect
-                        rules={{ required: 'Auction end date is required' }} />
-                </div>
-            </>}
+                    <div className='grid grid-cols-2 gap-3'>
+                        <Input label='Reserve Price (enter 0 if no reserve)'
+                            name='reservePrice' control={control} type='number'
+                            rules={{ required: 'Reserve price is required' }} />
+                        <DateInput
+                            label='Auction end date/time'
+                            name='auctionEnd'
+                            control={control}
+                            dateFormat='dd MMMM yyyy h:mm a'
+                            showTimeSelect
+                            rules={{ required: 'Auction end date is required' }} />
+                    </div>
+                </>}
 
 
             <div className='flex justify-between'>
